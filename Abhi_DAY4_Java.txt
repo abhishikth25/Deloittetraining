@@ -1,0 +1,521 @@
+package ConstructorChaining;
+
+public class customer 
+{
+	int custid;
+	String custname;
+	int billamt;
+
+	public customer()
+	{custid = 100;
+	custname = "NA";
+	billamt = 0;
+	}
+	
+	public customer(int custid, String custname)
+	{this(); // Calls default customer to initialize values, i.e (Sends control to public customer())
+	 this.custid = custid;
+	 this.custname = custname;
+	}
+	
+	public customer(int custid, int billamt)
+	{this();
+	this.custid = custid;
+	this.billamt = billamt;
+	}
+	
+	public customer(String custname, int billamt)
+	{this();
+	this.custname= custname;
+	this.billamt=billamt;
+	}
+	
+	public customer(int custid, String custname, int billamt)
+	{this();
+	this.custid = custid;
+	this.custname= custname;
+	this.billamt=billamt;
+	}
+	
+	public void display()
+	{
+		System.out.println("The customer id is: "+custid);
+		System.out.println("The customer name is: "+custname);
+		System.out.println("The bill amount is: "+billamt);
+		
+	}
+	
+	public static void main(String[] args) 
+	{ 
+		customer c = new customer(7, "Abhi");
+		c.display();
+	
+	}
+
+}
+
+____________________________________________________________________________________________
+
+
+package ConstructorChaining;
+
+public class customer 
+{
+	int custid;
+	String custname;
+	int billamt;
+
+	public customer()
+	{custid = 100;
+	custname = "NA";
+	billamt = 0;
+	}
+	
+	public customer(int custid, String custname)
+	{this(); // Calls default customer to initialize values, i.e (Sends control to public customer())
+	 this.custid = custid;
+	 this.custname = custname;
+	}
+	
+	public int getCustid() {
+		return custid;
+	}
+
+	public void setCustid(int custid) {
+		this.custid = custid;
+	}
+
+	public String getCustname() {
+		return custname;
+	}
+
+	public void setCustname(String custname) {
+		this.custname = custname;
+	}
+
+	public int getBillamt() {
+		return billamt;
+	}
+
+	public void setBillamt(int billamt) {
+		this.billamt = billamt;
+	}
+
+	public customer(int custid, int billamt)
+	{this();
+	this.custid = custid;
+	this.billamt = billamt;
+	}
+	
+	public customer(String custname, int billamt)
+	{this();
+	this.custname= custname;
+	this.billamt=billamt;
+	}
+	
+	public customer(int custid, String custname, int billamt)
+	{this();
+	this.custid = custid;
+	this.custname= custname;
+	this.billamt=billamt;
+	}
+	
+	public void display()
+	{
+		System.out.println("The customer id is: "+custid);
+		System.out.println("The customer name is: "+custname);
+		System.out.println("The bill amount is: "+billamt);
+		
+	}
+}
+
+
+
+package ConstructorChaining;
+ 
+public class Client
+{
+
+	public static void main(String args[])
+	{
+		int custid, billamt;
+		String custname;
+		customer c = new customer(7,"Abhi",10000);
+		custid=c.getCustid();
+		custname=c.getCustname();
+		billamt = c.getBillamt();
+		c.display();
+		c.setCustid(23);
+		c.setCustname("Priyanka");
+		c.setBillamt(23000);
+		System.out.println("The details have now been changed.\nThe new details are:");
+		c.display();
+	}
+ }
+
+_________________________________________________________________________________________________
+
+
+package Inheritance;
+
+public class Animals 
+{
+	public int age=100;
+	public Animals()
+	{ 
+		System.out.println("Animal constructor:"+ age);
+	}
+	public static void main(String args[])
+	{ Mens m = new Mens();
+	  m.Mens();
+	}
+}	
+class Mens extends Animals
+{
+	int age =90;
+	int salary = 1000;
+	public void Mens()
+	{ int age=10;
+	 System.out.println("Age= "+age);
+	 System.out.println("Age= "+this.age);
+	 System.out.println("Age= "+super.age);
+	}
+}
+
+_______________________________________________________________________________________________
+
+
+package Inheritance;
+class Animal
+{
+	public Animal()
+	{
+		System.out.println("Animal's Constructor");
+	}
+	public void eat()
+	{
+		System.out.println("Animals eat food");
+	}
+}
+
+class Men extends Animal
+{
+	public Men()
+	{
+		System.out.println("Men's constructor");
+	}
+	public void eat()
+	{   
+		super.eat();
+		System.out.println("Men eat veg and no-veg food");
+	}
+}
+
+class Dog extends Animal
+{
+	public Dog()
+	{
+		System.out.println("Dog's constructor");
+	}
+	public void eat()
+	{
+		super.eat();
+		System.out.println("Dog eats pedigree");
+	}
+}
+public class Main 
+{
+	public static void main(String args[])
+	{   
+		Men m = new Men();
+		m.eat();
+		Dog d = new Dog();
+		d.eat();
+	}
+}
+
+____________________________________________________________________________________________
+
+
+package Inheritance;
+
+abstract class Vehicle
+{
+	int price;
+	public Vehicle()
+	{
+		System.out.println("Vehicle constructer called");
+	}
+	public abstract void start();
+	public abstract void stop();
+	public void music()
+	{
+		System.out.println("Music info unavailable");
+	}
+
+}
+
+class Car extends Vehicle
+{
+	public Car()
+	{
+		System.out.println("Car onstructer called");
+	}
+	public void start()
+	{
+		price =900000;
+		System.out.println("Car starts");
+	}
+	public void stop()
+	{
+		System.out.println("Car stops");
+	}
+	public void music()
+	{
+		System.out.println("Car has mp3 player");
+	}
+}
+public class Main 
+{
+	public static void main(String args[])
+	{   Vehicle v = new Car(); // Creates an object of vehicle, but with the characteristics particular to Car (This statement demonstrates inheritance of abstract classes, since we can't directly create objects of an abstract class)
+	    v.start();
+	    v.stop();
+	    v.music();
+	}
+}
+
+____________________________________________________________________________________________
+
+
+package Inheritance;
+
+class A 
+{
+	private A()
+	{
+		
+	}
+	public static String dd()
+	{ 
+		return "new password";
+	
+	}
+}
+
+class B
+{
+	void display()
+	{
+		System.out.println("A display");
+	}
+}
+
+public class Demo
+{
+	public static void main(String args[])
+	{ 
+		System.out.println(A.dd());
+		B b = new B();
+		b.display();
+	}
+}
+
+______________________________________________________________________________________________
+
+Exercise Objective(s): Overloading
+
+Exercise: Create a class called Calculator which has 4 different methods add, diff, mul and div that accept two numbers as parameters. Overload the methods such that the parameters can be of the following pattern. 
+a)	Both are of int data type. 
+b)	Both are of double data type. 
+c)	First parameter is of int data type and second parameter is of double data type. 
+d)	First parameter is of double data type and second parameter is of int data type
+
+
+     Create an object to access these methods and invoke these methods with different type of numbers and display the result in the corresponding methods. 
+____________________________________________________________
+
+ANSWER:
+
+import java.util.Scanner;
+
+class calculator
+{   
+	void add (int num1, int num2)
+	{
+		System.out.println("The answer is: "+ (num1+num2));	
+	}
+	
+	void add (double num1, double num2)
+	{
+		System.out.println("The answer is: "+ (num1+num2));
+	}
+	
+	void add (int num1, double num2)
+	{
+		System.out.println("The answer is: "+ (num1+num2));
+	}
+	
+	void add (double num1, int num2)
+	{
+		System.out.println("The answer is: "+ (num1+num2));
+	}
+	
+	void sub (int num1, int num2)
+	{
+		System.out.println("The answer is: "+ (num1-num2));
+	}
+	
+	void sub (double num1, double num2)
+	{
+		System.out.println("The answer is: "+ (num1-num2));
+	}
+	
+	void sub (int num1, double num2)
+	{
+		System.out.println("The answer is: "+ (num1-num2));
+	}
+	
+	void sub (double num1, int num2)
+	{
+		System.out.println("The answer is: "+ (num1-num2));
+	}
+	
+	void mul (int num1, int num2)
+	{
+		System.out.println("The answer is: "+ (num1*num2));
+	}
+	
+	void mul (double num1, double num2)
+	{
+		System.out.println("The answer is: "+ (num1*num2));
+	}
+	
+	void mul (int num1, double num2)
+	{
+		System.out.println("The answer is: "+ (num1*num2));
+	}
+	
+	void mul (double num1, int num2)
+	{
+		System.out.println("The answer is: "+ (num1*num2));
+	}
+	
+	void div (int num1, int num2)
+	{
+		System.out.println("The answer is: "+ (num1/num2));
+	}
+	
+	void div (double num1, double num2)
+	{
+		System.out.println("The answer is: "+ (num1/num2));
+	}
+	
+	void div (int num1, double num2)
+	{
+		System.out.println("The answer is: "+ (num1/num2));
+	}
+	
+	void div (double num1, int num2)
+	{
+		System.out.println("The answer is "+ (num1/num2));
+	}
+}
+
+public class Assignment1 
+{   public static void main(String args[])
+	{
+	double num1=0;
+	double num2=0;
+	int ip1;
+	int ip;
+	int ip2;
+	int number1=0;
+	int number2=0;
+	for(;;)
+	{
+	System.out.println("If you want to enter number as double press 1, if in int press 0");
+	Scanner se = new Scanner(System.in);
+	ip1= se.nextInt();
+	if(ip1==1)
+	{	
+	System.out.println("Please enter number 1:");
+	Scanner sc = new Scanner(System.in);
+	num1=sc.nextDouble();
+	}
+	else if(ip1==0)
+	{System.out.println("Please enter number 1:");
+	Scanner sd = new Scanner(System.in);
+	number1=sd.nextInt();
+	}
+	else if(ip1!=1 && ip1!=0)
+	{	System.out.println("Wrong input. Please enter again");
+		continue;
+	}
+	System.out.println("If you want to enter number as double press 1, if in int press 0");
+	Scanner sf = new Scanner(System.in);
+	ip= se.nextInt();
+	if(ip==1)
+	{	
+	System.out.println("Please enter number 2:");
+	Scanner sc = new Scanner(System.in);
+	num2=sc.nextDouble();
+	}
+	else if(ip==0)
+	{System.out.println("Please enter number 2:");
+	Scanner sd = new Scanner(System.in);
+	number2=sd.nextInt();
+	}
+	else if(ip!=1 && ip!=0)
+	{	System.out.println("Wrong input. Please enter again");
+		continue;
+	}
+	calculator c =new calculator();
+	if(ip1==1 && ip==1)
+	{
+	c.add(num1, num2);
+	c.sub(num1, num2);
+	c.mul(num1, num2);
+	c.div(num1, num2);
+	}
+	else if(ip1==1 && ip==0)
+	{
+	c.add(num1, number2);
+	c.sub(num1, number2);
+	c.mul(num1, number2);
+	c.div(num1, number2);
+	}
+	else if(ip1==0 && ip==1)
+	{
+	c.add(number1, num2);
+	c.sub(number1, num2);
+	c.mul(number1, num2);
+	c.div(number1, num2);
+	}
+	else if(ip1==0 && ip==0)
+	{
+	c.add(number1, number2);
+	c.sub(number1, number2);
+	c.mul(number1, number2);
+	c.div(number1, number2);
+	}
+	System.out.println("If you want to enter again, press 1, if you want to end press 0");
+	Scanner sg = new Scanner(System.in);
+	ip2 =sg.nextInt();
+	if(ip2==1)
+		{
+		continue;
+		}
+	else if(ip2==0)
+	{
+		System.out.println("Thank You");
+		break;
+	}
+	else if(ip2!=1 && ip2!=0)
+	{
+		System.out.println("Wrong input. Program will terminate");
+		break;
+	}
+}
+}
+}
