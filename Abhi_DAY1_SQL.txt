@@ -1,0 +1,323 @@
+SQL> CREATE TABLE STUD(SID char(5), SNAME varchar (20), DOB date, DOJ date);
+
+Table created.
+
+SQL> INSERT INTO STUD VALUES ('1', 'Aditya', '14-DEC-1996', '20-FEB-2018');
+
+1 row created.
+
+SQL> INSERT INTO STUD VALUES ('2', 'Shyam', '27-SEP-1996', '03-JAN-2021');
+
+1 row created.
+
+SQL> INSERT INTO STUD VALUES ('3', 'Abhi', '25-APR-1997', '15-AUG-2017');
+
+1 row created.
+
+SQL> SELECT * FROM STUD;
+
+SID   SNAME      DOB       DOJ
+----- ---------- --------- ---------
+1     Aditya     14-DEC-96 20-FEB-18
+2     Shyam      27-SEP-96 03-JAN-21
+3     Abhi       25-APR-97 15-AUG-17
+
+
+SQL> CREATE TABLE S1111 (Name varchar(20), DOB date);
+
+Table created.
+
+SQL> INSERT INTO S1111 Values('Tufail', to_date('2003/05/03', 'yyyy/mm/dd'));
+
+1 row created.
+
+SQL> INSERT INTO S1111 Values('Tarun', to_date('2003/12/06', 'yyyy/dd/mm'));
+
+1 row created.
+
+SQL> INSERT INTO S1111 Values('Arjun', to_date('23/11/2001', 'dd/mm/yyyy'));
+
+1 row created.
+
+SQL> SELECT * FROM S1111;
+
+NAME                 DOB
+-------------------- ---------
+Tufail               03-MAY-03
+Tarun                12-JUN-03
+Arjun                23-NOV-01
+
+
+SQL> SELECT MONTHS_BETWEEN(SYSDATE,'25-APR-1997')/12 FROM DUAL;
+
+MONTHS_BETWEEN(SYSDATE,'25-APR-1997')/12
+----------------------------------------
+                              21.2274949
+
+
+SQL> SELECT ROUND(MONTHS_BETWEEN(SYSDATE,'25-APR-1997')/12,0) FROM DUAL;
+
+ROUND(MONTHS_BETWEEN(SYSDATE,'25-APR-1997')/12,0)
+-------------------------------------------------
+                                               21
+
+
+SQL> SELECT* FROM STUDENT;
+
+ROLL       NAME                 ADDRESS                   MARKS
+---------- -------------------- -------------------- ----------
+1          Tufail               Chennai
+2          Amit                 Chennai
+2          Tarun                Chennai                      98
+4          Aditya               Chennai                     198
+4          Shashank             Chennai                       8
+4          Shyam                Chennai                     198
+
+6 rows selected.
+
+SQL> SELECT NVL(Marks,0) FROM STUDENT;
+
+NVL(MARKS,0)
+------------
+           0
+           0
+          98
+         198
+           8
+         198
+
+6 rows selected.
+
+SQL> SELECT * FROM STUDENT;
+
+ROLL       NAME                 ADDRESS                   MARKS
+---------- -------------------- -------------------- ----------
+1          Tufail               Chennai
+2          Amit                 Chennai
+2          Tarun                Chennai                      98
+4          Aditya               Chennai                     198
+4          Shashank             Chennai                       8
+4          Shyam                Chennai                     198
+
+6 rows selected.
+
+ 
+SQL> SELECT NVL2(Marks,Roll*3,Roll*5) FROM STUDENT;
+
+NVL2(MARKS,ROLL*3,ROLL*5)
+-------------------------
+                        5
+                       10
+                        6
+                       12
+                       12
+                       12
+
+6 rows selected.
+
+SQL> SELECT NVL2(Marks,Marks,Roll*5) FROM STUDENT;
+
+NVL2(MARKS,MARKS,ROLL*5)
+------------------------
+                       5
+                      10
+                      98
+                     198
+                       8
+                     198
+
+6 rows selected.
+
+SQL> SELECT NVL2(Marks,Marks,0) FROM STUDENT;
+
+NVL2(MARKS,MARKS,0)
+-------------------
+                  0
+                  0
+                 98
+                198
+                  8
+                198
+
+6 rows selected.
+
+SQL> SELECT NVL2(Marks,'Present','Absent') FROM STUDENT;
+
+NVL2(MA
+-------
+Absent
+Absent
+Present
+Present
+Present
+Present
+
+6 rows selected.
+
+SQL> SELECT * FROM STUDENT;
+
+ROLL       NAME                 ADDRESS                   MARKS
+---------- -------------------- -------------------- ----------
+1          Tufail               Chennai
+2          Amit                 Chennai
+2          Tarun                Chennai                      98
+4          Aditya               Bangalore                   198
+4          Shashank             Bangalore                     8
+4          Shyam                Bangalore                   198
+
+6 rows selected.
+
+SQL> SELECT ADDRESS, SUM(MARKS) FROM STUDENT GROUP BY ADDRESS;
+
+ADDRESS              SUM(MARKS)
+-------------------- ----------
+Bangalore                   404
+Chennai                      98
+
+SQL> SELECT ADDRESS, SUM(MARKS) FROM STUDENT GROUP BY ADDRESS HAVING ADDRESS='Chennai';
+
+ADDRESS              SUM(MARKS)
+-------------------- ----------
+Chennai                      98
+
+
+SQL> CREATE Table Student_T(Roll varchar(10) primary key, Name varchar(20) not null, Address varchar(20) Check(Address in('Chennai', 'Mumbai','Bangalore')), Marks number check (Marks between 0 and 100));
+
+Table created.
+
+SQL> Insert into Student_T values('1','A','Mumbai',98);
+
+1 row created.
+
+SQL> create table loanpayment(
+  2  loanno number(4) constraint myloan1 primary key,
+  3  loanstatus varchar2(10) constraint mycons1 check(loanstatus='upper'),
+  4  loanamount number(10) not null,
+  5  updatedate date default sysdate,
+  6  productkey varchar2(5));
+
+Table created.
+
+SQL>Insert into loanpayment values(1,'upper',8000,default,'P001');
+
+1 row created.
+
+SQL> Delete from loanpayment;
+
+1 row deleted.
+
+SQL> Insert into loanpayment values(1,'APPROVED',8000, default,'P001');
+Insert into loanpayment values(1,'APPROVED',8000, default,'P001')
+*
+ERROR at line 1:
+ORA-02290: check constraint (SCOTT.MYCONS1) violated
+
+
+
+
+
+
+
+Create a table called Employee with the following Columns  and perform the following operations:-
+------------------------------------------------------------------------------------------------------------
+
+EmployeeID    
+EmployeeName   
+EmployeeAddress : 
+DOB
+DOJ
+Salary
+
+
+a.) Insert five records
+
+b) Retrieve all the records
+
+
+c) Retrieve the Employee name whose salary is greater than 20000
+
+d) Retrieve the Employee name whose address contains 'a' or 'p' or 'r'  as the last character
+ 
+e) Increase the Salary of all the Employee by 20%
+
+f) Delete all the employee records whose salary is less than 5000 
+
+
+___________________________________________
+
+
+
+SQL> CREATE Table Employee(EmployeeID varchar(5), EmployeeName varchar(10), EmployeeAddress varchar(20), DOB date, DOJ date, Salary number);
+
+Table created.
+
+SQL> INSERT INTO Employee values(1,'Abhi','Bangalore','25-APR-1997','13-AUG-2018',45000);
+
+1 row created.
+
+SQL> INSERT INTO Employee values(2,'Aditya','Chennai','14-DEC-1996','16-OCT-2019',4000);
+
+1 row created.
+
+SQL> INSERT INTO Employee values(3,'Shyam','Munich','27-SEP-1996','21-FEB-2019',30000);
+
+1 row created.
+
+SQL> INSERT INTO Employee values(4,'Varsha','LosAngeles','2-JAN-1997','12-MAR-2018',3500);
+
+1 row created.
+
+SQL> INSERT INTO Employee values(5,'Keerthana','Mumbai','18-JUL-1996','02-MAY-2018',60000);
+
+1 row created.
+
+SQL> SELECT*FROM Employee;
+
+EMPLO EMPLOYEENA EMPLOYEEADDRESS      DOB       DOJ           SALARY
+----- ---------- -------------------- --------- --------- ----------
+1     Abhi       Bangalore            25-APR-97 13-AUG-18      45000
+2     Aditya     Chennai              14-DEC-96 16-OCT-19       4000
+3     Shyam      Munich               27-SEP-96 21-FEB-19      30000
+4     Varsha     LosAngeles           02-JAN-97 12-MAR-18       3500
+5     Keerthana  Mumbai               18-JUL-96 02-MAY-18      60000
+
+SQL> SELECT EmployeeName FROM Employee WHERE Salary>20000;
+
+EMPLOYEENA
+----------
+Abhi
+Shyam
+Keerthana
+
+SQL> SELECT EmployeeName FROM Employee WHERE (EmployeeAddress like '%p' OR EmployeeAddress like '%a' OR EmployeeAddress like '%r');
+
+no rows selected
+
+SQL> Update Employee Set Salary=Salary*1.2;
+
+5 rows updated.
+
+SQL> SELECT*FROM EMPLOYEE;
+
+EMPLO EMPLOYEENA EMPLOYEEADDRESS      DOB       DOJ           SALARY
+----- ---------- -------------------- --------- --------- ----------
+1     Abhi       Bangalore            25-APR-97 13-AUG-18      54000
+2     Aditya     Chennai              14-DEC-96 16-OCT-19       4800
+3     Shyam      Munich               27-SEP-96 21-FEB-19      36000
+4     Varsha     LosAngeles           02-JAN-97 12-MAR-18       4200
+5     Keerthana  Mumbai               18-JUL-96 02-MAY-18      72000
+
+SQL> DELETE FROM EMPLOYEE WHERE SALARY<5000;
+
+2 rows deleted.
+
+SQL> SELECT* FROM EMPLOYEE;
+
+EMPLO EMPLOYEENA EMPLOYEEADDRESS      DOB       DOJ           SALARY
+----- ---------- -------------------- --------- --------- ----------
+1     Abhi       Bangalore            25-APR-97 13-AUG-18      54000
+3     Shyam      Munich               27-SEP-96 21-FEB-19      36000
+5     Keerthana  Mumbai               18-JUL-96 02-MAY-18      72000
+
+____________________________________________________________________________________________
+

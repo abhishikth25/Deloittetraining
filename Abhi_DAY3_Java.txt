@@ -1,0 +1,378 @@
+import Demo.*;
+public class Hello 
+{
+	public static void main(String[] args) 
+	{
+		System.out.println("This statement belongs to main funtion in class Hello in Default package");
+		 Loop l =new Loop();
+		 l.one();
+		 l.two();
+		 Demo.Loop m = new Demo.Loop();
+		 m.one();
+		 m.two();
+		Onemore n = new Onemore();
+		n.state();
+	}
+
+}
+
+public class Loop
+{
+
+	public void one() 
+	{
+		System.out.println("This statement belongs to method one in class loop in Default package");
+    }
+
+	public void two()
+	{
+		System.out.println("This statement belongs to method two in class loop in Default package");
+    
+	}
+}
+
+package Demo;
+
+public class Loop {
+
+	public void one() 
+	{
+		System.out.println("This statement belongs to method one in class loop in  Package Demo");
+    }
+
+	public void two()
+	{
+		System.out.println("This statement belongs to method two in class loop in Package Demo");
+    
+	}
+}
+
+package Demo;
+
+public class Onemore {
+public void state()
+{System.out.println("This statement belongs to method state in class Onemore in Package Demo");
+}
+}
+
+_____________________________________________________________________________________________
+
+package pack1;
+
+public class A 
+{
+	protected int i;
+
+	public static void main(String[] args)
+	{
+		
+
+	}
+
+	
+}
+
+package pack1;
+
+public class B extends A 
+{
+public void display()
+{ A a = new A();
+a.i=100;
+i=200;
+}
+}
+
+
+package pack1;
+
+public class C {
+public void display ()
+{A a =new A();
+a.i=100;
+}
+}
+
+package pack2;
+import pack1.A;
+
+public class D {
+public void display()
+{ A a= new A();
+a.i = 100;
+		
+}
+}
+
+package pack2;
+
+import pack1.A;
+
+public class E extends A{
+public void display()
+{A a = new A();
+a.i=100;
+i=200;
+}
+}
+
+___________________________________________________________________________________________
+
+package Sum;
+import java.util.Scanner;
+public class Addition 
+{
+	public static int addnumbers(int num1, int num2)
+	{ return num1+num2;
+	
+	}
+	public static void main(String args[])
+	{
+		int x=0, y=0, z=0;
+		for(;;)
+		{
+		System.out.println("Enter First number");
+		Scanner scanner = new Scanner(System.in);
+		x= scanner.nextInt();
+		System.out.println("Enter Second number");
+		Scanner sc = new Scanner(System.in);
+		y= sc.nextInt();
+	    int sum = addnumbers(x,y);
+	    System.out.println("The sum of the two numbers is "+ sum);
+	    System.out.println("If you want to repeat press 1 else press 0");
+	    Scanner sca = new Scanner(System.in);
+	    z= sca.nextInt();
+	    if (z==0)
+	    {System.out.println("Thanks");
+	    break;
+	    }
+	    else if(z!=0 & z!=1)
+	    {System.out.println("Incorrect input. Program will terminate");
+	    break;
+	    }
+	    }
+	
+}
+}
+
+
+____________________________________________________________________________________________
+
+
+public class Class1 
+{
+static int  counter=0;
+
+public void Class1()
+
+{
+	counter++;
+}
+
+public static void main(String[] args) 
+	{
+	Class1 c1 = new Class1();
+	Class1 c2 = new Class1();
+	Class1 c3 = new Class1();
+	Class1 c4 = new Class1();
+	Class1 c5 = new Class1();
+	System.out.println(counter);
+
+	}
+
+}
+
+
+____________________________________________________________________________________________
+
+public class Class1 
+{ int p=0;
+
+public void display(int p, int m)
+{
+	System.out.println("Adding two numbers.\nResult: "+(p+m));
+
+}
+
+public void display()
+{System.out.println("No addition");
+
+}
+
+public void display(int...num)
+{int sum=0;
+	for(int i: num)
+	{
+	sum=sum+i;
+	}
+	System.out.println("Adding the input numbers.\nResult: "+sum);
+}
+public static void main(String[] args) 
+	{ Class1 c =new Class1();
+	  c.display(1,4,4,5,6,8,1);
+	}
+
+}
+
+____________________________________________________________________________________________
+
+import java.lang.String;
+import java.lang.System;
+
+public class Demo {
+	int num1=10,num2=20;
+	public Demo(int num1,int num2) {
+			this.num1 = num2;
+			num2 = num1;
+	}
+	public void changeValues(int num1,Demo demo) {
+		this.num1++;
+		demo.num2 = --num1;
+		demo.num2 = this.num1++;
+		System.out.println(num1+this.num1+this.num2+demo.num1);
+	}
+	 public static void main(String[] args) 
+	{
+		 	int num1=100;int num2=200;
+		 	Demo demo = new Demo(100,200);
+		 	demo.changeValues(num1, demo);
+		 	System.out.println(num1+num2+demo.num1+demo.num2);
+	}
+}
+
+____________________________________________________________________________________________
+
+			Linking Different Projects via JAR Files
+
+(Project1)
+
+package hello;
+
+public class MyMessage 
+{
+
+	public String printmessage() 
+	{
+		return "Hello. My name is Abhishikth.";
+
+	}
+
+}
+Create JAR File: (Export --> Java --> JAR file)
+
+
+(Project2)
+(Libraries --> Add External JAR Files)
+
+import hello.MyMessage;
+public class JARFileDemo 
+{
+	 public static void main (String args[])
+	 { 
+		hello.MyMessage message = new MyMessage();
+        	System.out.println(message.printmessage());
+ 	 }
+}
+
+____________________________________________________________________________________________
+
+
+Mandated Programming Practices for the course: 
+1.	It is important that code must use meaningful names, conventions, appropriate constructs and indentation.
+2.	Every function must be preceded by short and meaningful comments explaining the purpose of the function.
+3.	It is important and implicit that all the data entered for the program should be valid. 
+
+Q.The temperatures of the cities across various countries are continuously monitored. 
+  A warning is displayed in cases where temperature goes beyond intolerable range. 
+  The temperature will be entered either in the form of Celsius or Fahrenheit.
+  The conversion formula is C=5(F-32)/19. If the temperature is beyond 60 degree
+  Celsius or below -10 degree Celsius, warning has to be displayed. 
+
+Ans:
+
+import java.util.Scanner;
+public class WeatherSystem
+{
+	public int DegreeConvert(int t) // Converts Farenheit to Celsius
+	{
+		int t1=t;
+		int t2= ((t1-32)*5)/9;
+		return t2;
+	}
+	
+	public void WeatherSystem(int n) // Checks whether the temperature is within tolerable range or not
+	{
+		int n1=n;
+		if(n1>60 || n1<-10)
+		{
+			System.out.println("Warning! Temperature is beyond tolerable range.");
+		}
+		else
+		{
+			System.out.println("Temperature within tolerable range");
+		}
+	}
+	 public static void main(String[] args) 
+	 
+	{ 
+	
+		 for (;;)
+		 {
+			 System.out.println("If you want to enter the temperature in Celsius press 1, in Farenheit then 0");
+		     Scanner check =new Scanner(System.in);
+		     int unitcheck = check.nextInt();
+		     
+		     if(unitcheck==1)
+		   {
+			   System.out.println("Please enter the temperature");
+			   Scanner temperature =new Scanner(System.in);
+			   int temp = temperature.nextInt();
+			   WeatherSystem d = new WeatherSystem();
+			   d.WeatherSystem(temp);
+		   }
+		     
+		   else if(unitcheck==0)
+		   {
+			   System.out.println("Please enter the temperature");
+			   Scanner temperature =new Scanner(System.in);
+			   int temp = temperature.nextInt();
+			   WeatherSystem d = new WeatherSystem();
+			   int temp2 = d.DegreeConvert(temp);
+			   d.WeatherSystem(temp2);
+		   }
+		     
+		   else
+		   {
+			   System.out.println("Wrong input. Please enter again");
+			   continue;
+		   }
+		   
+		   System.out.println("If you want to enter again press 1. If you want to end press 0");
+		   Scanner flag = new Scanner(System.in);
+		   int flagcheck = flag.nextInt();
+		   
+		   if(flagcheck==0)
+		   {
+			   System.out.println("Thank You. Program will terminate");
+			   break;
+		   }
+		   
+		   else if(flagcheck==1)
+		   {
+			   continue;
+		   }
+		   
+		   else 
+		   {
+			   System.out.println("Wrong input. Program will terminate.");
+			   break;
+		   }
+		   
+	   }
+	}
+}
+
+	
+
+
+

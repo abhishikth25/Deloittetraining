@@ -1,0 +1,509 @@
+
+CREATE Table AB_emp (emp_no numeric(3) primary key,
+  2  empname varchar2(20) not null,
+  3  salary numeric(8,2),
+  4  designation varchar2(20),
+  5  dept_no numeric(3));
+
+Table created.
+
+SQL> create table AB2_dept( dept_no numeric(3) primary key,
+  2  dept_name varchar2(20),
+  3  location varchar2(20) not null);
+
+Table created.
+
+SQL> alter table AB_emp add constraint myfk_1 foreign key(dept_no) references AB2_dept(dept_no);
+
+Table altered.
+
+SQL> insert into AB_emp values(1,'Anu',98000,'Consultant',009);
+insert into AB_emp values(1,'Anu',98000,'Consultant',009)
+*
+ERROR at line 1:
+ORA-02291: integrity constraint (SCOTT.MYFK_1) violated - parent key not found
+
+
+SQL> 
+
+SQL> insert into AB2_dept values('001','HR','Bangalore');
+
+1 row created.
+
+SQL> insert into AB2_dept values('002','Technical','Bangalore');
+
+1 row created.
+
+SQL> insert into AB2_dept values('003','HR','Chennai');
+
+1 row created.
+
+SQL> insert into AB2_dept values('004','Technical','Chennai');
+
+1 row created.
+
+SQL> insert into AB2_dept values('005','HR','Mumbai');
+
+1 row created.
+
+SQL> insert into AB2_dept values('006','Technical','Mumbai');
+
+1 row created.
+
+SQL> insert into AB2_dept values('007','CustomerCare','Mumbai');
+
+1 row created.
+
+SQL> insert into AB2_dept values('008','HR','Hyderabad');
+
+1 row created.
+
+SQL> insert into AB2_dept values('009','Technical','Hyderabad');
+
+1 row created.
+
+SQL> insert into AB2_dept values('010','CustomerCare','Hyderabad');
+
+1 row created.
+
+SQL> select * from AB2_dept;
+
+   DEPT_NO DEPT_NAME            LOCATION
+---------- -------------------- --------------------
+         1 HR                   Bangalore
+         2 Technical            Bangalore
+         3 HR                   Chennai
+         4 Technical            Chennai
+         5 HR                   Mumbai
+         6 Technical            Mumbai
+         7 CustomerCare         Mumbai
+         8 HR                   Hyderabad
+         9 Technical            Hyderabad
+        10 CustomerCare         Hyderabad
+
+10 rows selected.
+
+SQL> Insert into AB_emp values(1, 'Anu', 98000,'Manager',001);
+
+1 row created.
+
+SQL> Insert into AB_emp values(2, 'Rohit', 51000,'Consultant',004);
+
+1 row created.
+
+SQL> Insert into AB_emp values(3, 'Aditya', 27000,'Analyst',010);
+
+1 row created.
+
+SQL> Insert into AB_emp values(4, 'Karthik', 77000,'Asst_Manager',005);
+
+1 row created.
+
+SQL> Insert into AB_emp values(5, 'Priyanka', 170000,'Developer',002);
+
+1 row created.
+
+SQL> select*from AB_emp;
+
+    EMP_NO EMPNAME                  SALARY DESIGNATION             DEPT_NO
+---------- -------------------- ---------- -------------------- ----------
+         1 Anu                       98000 Manager                       1
+         2 Rohit                     51000 Consultant                    4
+         3 Aditya                    27000 Analyst                      10
+         4 Karthik                   77000 Asst_Manager                  5
+         5 Priyanka                 170000 Developer                     2
+
+
+SQL> Create table section(
+  2  Section_id number(3) constraint S_id check(Section_id>0_),
+  3  section_name char(30) constraint s_name not null,
+  4  book_count number(6),
+  5  constraint sect_prime primary key(Section_id));
+Section_id number(3) constraint S_id check(Section_id>0_),
+                                                       *
+ERROR at line 2:
+ORA-00911: invalid character
+
+
+SQL> Create table section(
+  2  Section_id number(3) constraint S_id check(Section_id>0_),
+  3  ;
+Section_id number(3) constraint S_id check(Section_id>0_),
+                                                       *
+ERROR at line 2:
+ORA-00911: invalid character
+
+
+SQL> Create table section(
+  2  Section_id number(3) constraint S_id check(Section_id>0),
+  3  section_name char(30) constraint s_name not null,
+  4  book_count number(6),
+  5  constraint sect_prime primary key(Section_id));
+
+Table created.
+
+SQL> create table book
+  2  (isbn number(10) constraint b_isbn check(isbn between 1 and 2000),
+  3  title varchar2(200) constraint B_title not null,
+  4  author varchar2(50) constraint B_auth not null,
+  5  lent_date date,
+  6  return_date date,
+  7  timeslent number(6),
+  8  sectionid number(3),
+  9  constraint book_prime primary key(isbn),
+ 10  constraint book_sect foreign key(sectionid) references Section(section_id)
+ 11  on delete cascade);
+
+Table created.
+
+SQL> insert into section values(1,'ABC',78);
+
+1 row created.
+
+SQL> insert into section values(2,'XYZ',65);
+
+1 row created.
+
+SQL> insert into Book values(1,'java','james',to_date('3/3/2009','dd/mm/yyyy'),to_date('9/3/2009','dd/mm/yyyy'),10,1);
+
+1 row created.
+
+
+SQL> create table stu
+  2  (roll number(20),
+  3  name varchar2(20));
+
+Table created.
+
+SQL> create table fees(
+  2  roll number(20),
+  3  amount number(10));
+
+Table created.
+
+SQL> insert into stu values(&roll,'&name');
+Enter value for roll: 12
+Enter value for name: Moin
+old   1: insert into stu values(&roll,'&name')
+new   1: insert into stu values(12,'Moin')
+
+1 row created.
+
+SQL> insert into stu values(&roll,'&name');
+Enter value for roll: 17
+Enter value for name: Ram
+old   1: insert into stu values(&roll,'&name')
+new   1: insert into stu values(17,'Ram')
+
+1 row created.
+
+SQL> insert into stu values(&roll,'&name');
+Enter value for roll: 23
+Enter value for name: Rohit
+old   1: insert into stu values(&roll,'&name')
+new   1: insert into stu values(23,'Rohit')
+
+1 row created.
+
+SQL> insert into stu values(&roll,'&name');
+Enter value for roll: 19
+Enter value for name: Ajay
+old   1: insert into stu values(&roll,'&name')
+new   1: insert into stu values(19,'Ajay')
+
+1 row created.
+
+SQL> insert into fees values(&roll,&amount);
+Enter value for roll: 12
+Enter value for amount: 9000
+old   1: insert into fees values(&roll,&amount)
+new   1: insert into fees values(12,9000)
+
+1 row created.
+
+SQL> insert into fees values(&roll,&amount);
+Enter value for roll: 17
+Enter value for amount: 23000
+old   1: insert into fees values(&roll,&amount)
+new   1: insert into fees values(17,23000)
+
+1 row created.
+
+SQL> insert into fees values(&roll,&amount);
+Enter value for roll: 23
+Enter value for amount: 9000
+old   1: insert into fees values(&roll,&amount)
+new   1: insert into fees values(23,9000)
+
+1 row created.
+
+SQL> insert into fees values(&roll,&amount);
+Enter value for roll: 19
+Enter value for amount: 3220
+old   1: insert into fees values(&roll,&amount)
+new   1: insert into fees values(19,3220)
+
+1 row created.
+
+SQL> select name from stu where roll=(select roll from fees where amount=3220);
+
+NAME
+--------------------
+Ajay
+
+SQL> select name from stu where roll=(select roll from fees where amount=9000);
+select name from stu where roll=(select roll from fees where amount=9000)
+                                 *
+ERROR at line 1:
+ORA-01427: single-row subquery returns more than one row
+
+
+SQL> select name from stu where roll in(select roll from fees where amount=9000);
+
+NAME
+--------------------
+Moin
+Rohit
+
+
+SQL> Create table emp1(empname varchar2(20), dept_no number(3));
+
+Table created.
+
+SQL> insert into emp1 values(&empname,&dept_no);
+Enter value for empname: Aditya 1
+Enter value for dept_no: 1
+old   1: insert into emp1 values(&empname,&dept_no)
+new   1: insert into emp1 values(Aditya 1,1)
+insert into emp1 values(Aditya 1,1)
+                               *
+ERROR at line 1:
+ORA-00917: missing comma
+
+
+SQL> insert into emp1 values(&empname,&dept_no);
+Enter value for empname: Aditya
+Enter value for dept_no: 1
+old   1: insert into emp1 values(&empname,&dept_no)
+new   1: insert into emp1 values(Aditya,1)
+insert into emp1 values(Aditya,1)
+                        *
+ERROR at line 1:
+ORA-00984: column not allowed here
+
+
+SQL> insert into emp1 values(&empname,&dept_no);
+Enter value for empname: 'Aditya'
+Enter value for dept_no: 1
+old   1: insert into emp1 values(&empname,&dept_no)
+new   1: insert into emp1 values('Aditya',1)
+
+1 row created.
+
+SQL> insert into emp1 values(&empname,&dept_no);
+Enter value for empname: 'Shyam'
+Enter value for dept_no: 1
+old   1: insert into emp1 values(&empname,&dept_no)
+new   1: insert into emp1 values('Shyam',1)
+
+1 row created.
+
+SQL> insert into emp1 values(&empname,&dept_no);
+Enter value for empname: 'Sreenath'
+Enter value for dept_no: 2
+old   1: insert into emp1 values(&empname,&dept_no)
+new   1: insert into emp1 values('Sreenath',2)
+
+1 row created.
+
+SQL> insert into emp1 values(&empname,&dept_no);
+Enter value for empname: 'Shashank'
+Enter value for dept_no: 2
+old   1: insert into emp1 values(&empname,&dept_no)
+new   1: insert into emp1 values('Shashank',2)
+
+1 row created.
+
+SQL> insert into emp1 values(&empname,&dept_no);
+Enter value for empname: Siddharth
+Enter value for dept_no: 1
+old   1: insert into emp1 values(&empname,&dept_no)
+new   1: insert into emp1 values(Siddharth,1)
+insert into emp1 values(Siddharth,1)
+                        *
+ERROR at line 1:
+ORA-00984: column not allowed here
+
+
+SQL> insert into emp1 values(&empname,&dept_no);
+Enter value for empname: 'Siddharth'
+Enter value for dept_no: 2
+old   1: insert into emp1 values(&empname,&dept_no)
+new   1: insert into emp1 values('Siddharth',2)
+
+1 row created.
+
+SQL> insert into emp1 values(&empname,&dept_no);
+Enter value for empname: 'Kartikeya'
+Enter value for dept_no: 1
+old   1: insert into emp1 values(&empname,&dept_no)
+new   1: insert into emp1 values('Kartikeya',1)
+
+1 row created.
+
+SQL> Create table salary(deptno number(3), salary number(6));
+
+Table created.
+
+SQL> insert into salary values(&deptno,&salary);
+Enter value for deptno: 1
+Enter value for salary: 1000
+old   1: insert into salary values(&deptno,&salary)
+new   1: insert into salary values(1,1000)
+
+1 row created.
+
+SQL> insert into salary values(&deptno,&salary);
+Enter value for deptno: 1
+Enter value for salary: 200
+old   1: insert into salary values(&deptno,&salary)
+new   1: insert into salary values(1,200)
+
+1 row created.
+
+SQL> insert into salary values(&deptno,&salary);
+Enter value for deptno: 1
+Enter value for salary: 2300
+old   1: insert into salary values(&deptno,&salary)
+new   1: insert into salary values(1,2300)
+
+1 row created.
+
+SQL> insert into salary values(&deptno,&salary);
+Enter value for deptno: 2
+Enter value for salary: 3670
+old   1: insert into salary values(&deptno,&salary)
+new   1: insert into salary values(2,3670)
+
+1 row created.
+
+SQL> insert into salary values(&deptno,&salary);
+Enter value for deptno: 2
+Enter value for salary: 3455
+old   1: insert into salary values(&deptno,&salary)
+new   1: insert into salary values(2,3455)
+
+1 row created.
+
+SQL> insert into salary values(&deptno,&salary);
+Enter value for deptno: 2
+Enter value for salary: 890
+old   1: insert into salary values(&deptno,&salary)
+new   1: insert into salary values(2,890)
+
+1 row created.
+
+SQL> select * from emp1;
+
+EMPNAME                 DEPT_NO
+-------------------- ----------
+Aditya                        1
+Shyam                         1
+Sreenath                      2
+Shashank                      2
+Siddharth                     2
+Kartikeya                     1
+
+6 rows selected.
+
+SQL> select*from salary;
+
+    DEPTNO     SALARY
+---------- ----------
+         1       1000
+         1        200
+         1       2300
+         2       3670
+         2       3455
+         2        890
+
+6 rows selected.
+
+SQL> delete from salary a where a.salary=(select max(salary) from salary b where a.deptno = b.deptno);
+
+2 rows deleted.
+
+SQL> select* from salary;
+
+    DEPTNO     SALARY
+---------- ----------
+         1       1000
+         1        200
+         2       3455
+         2        890
+
+
+SQL> create table Suppliers1
+  2  (
+  3     supplier_id varchar(20),
+  4     supplier_name varchar(20)
+  5  );
+
+Table created.
+
+SQL> create table Orders1
+  2  (
+  3    order_id varchar(20),
+  4     supplier_id varchar(20),
+  5     order_date date
+  6  );
+
+Table created.
+
+SQL> insert into Suppliers1 values('10000','IBM');
+
+1 row created.
+
+SQL> insert into Suppliers1 values('10001','Hewlett Packard');
+
+1 row created.
+
+SQL> insert into Suppliers1 values('10002','Microsoft');
+
+1 row created.
+
+SQL> insert into Suppliers1 values('10003','TCS');
+
+1 row created.
+
+SQL> insert into Orders1 values('1','10000',to_date('3/3/09','mm/dd/yy'));
+
+1 row created.
+
+SQL> insert into Orders1 values('2','10000',to_date('7/5/10','mm/dd/yy'));
+
+1 row created.
+
+SQL> insert into Orders1 values('3','10001',to_date('12/8/10','mm/dd/yy'));
+
+1 row created.
+
+
+SQL> select order_id, supplier_name from orders1, suppliers1 where suppliers1.supplier_id=orders1.supplier_id;
+
+ORDER_ID             SUPPLIER_NAME
+-------------------- --------------------
+2                    IBM
+1                    IBM
+3                    Hewlett Packard
+
+
+SQL> select order_id, supplier_name, a.supplier_id from orders1 a, suppliers1 b where a.supplier_id=b.supplier_id;
+
+ORDER_ID             SUPPLIER_NAME        SUPPLIER_ID
+-------------------- -------------------- --------------------
+2                    IBM                  10000
+1                    IBM                  10000
+3                    Hewlett Packard      10001
+
+SQL>
