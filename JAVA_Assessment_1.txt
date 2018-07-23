@@ -1,0 +1,148 @@
+Name: Sai Abhishikth
+
+
+
+package com.javatraining.deloitte.assessment1;
+
+public interface Shape 
+{
+	double area(double length, double breadth, double height );
+	double volume(double length, double breadth, double height);
+
+}
+
+
+
+package com.javatraining.deloitte.assessment1;
+
+public class Cube implements Shape
+{
+	public double area(double length, double breadth, double height) 
+{
+	double area = 6*length*length;
+	return area;
+	
+}
+
+
+public double volume(double length, double breadth, double height) 
+{
+	return length*length*length;
+}
+}
+
+package com.javatraining.deloitte.assessment1;
+
+public class Triangle implements Shape
+{
+	public double area(double length, double breadth, double height) 
+{
+	double area = 0.5*length*breadth;
+	return area;
+	
+}
+
+
+public double volume(double length, double breadth, double height) 
+{
+	return -1;
+}
+}
+
+
+package com.javatraining.deloitte.assessment1;
+
+public class Rectangle implements Shape
+{
+	public double area(double length, double breadth, double height) 
+{
+	double area = length*breadth;
+	return area;
+	
+}
+
+
+public double volume(double length, double breadth, double height) 
+{
+	return -1;
+}
+}
+
+
+
+package com.javatraining.deloitte.assessment1;
+
+public class Sphere implements Shape
+{
+
+	
+	public double area(double radius, double breadth, double height) 
+	{
+		double area = 4*radius*radius;
+		return area;
+		
+	}
+
+	
+	public double volume(double radius, double breadth, double height) 
+	{
+		double volume = (4*radius*radius*radius)/3;
+		return volume;
+	}
+}
+
+	
+package com.javatraining.deloitte.assessment1;
+
+import java.util.Scanner;
+
+public class Main {
+
+	public static void main(String[] args) 
+	{  double trianglelength, triangleheight, 
+		rectanglelength, rectanglebreadth, cubelength, 
+		sphereradius, trianglearea, trianglevolume, 
+		rectanglearea,rectanglevolume,spherearea, 
+		spherevolume, cubearea, cubevolume;
+	   
+	  
+	  {
+		  Scanner sc = new Scanner(System.in);
+		  
+		  {System.out.println("Please enter the length and height of the triangle");
+		  trianglelength= sc.nextDouble();
+		  triangleheight= sc.nextDouble();
+		  Triangle t = new Triangle();
+		  trianglearea = t.area(trianglelength, triangleheight, 0);
+		  trianglevolume = t.volume(trianglelength, triangleheight, 0);  
+		  }
+		 
+		  {System.out.println("Please enter the length and breadth of the rectangle");
+		  rectanglelength= sc.nextDouble();
+		  rectanglebreadth= sc.nextDouble();
+		  Rectangle r = new Rectangle();
+		  rectanglearea = r.area(rectanglelength, rectanglebreadth, 0);
+		  rectanglevolume = r.volume(rectanglelength, rectanglebreadth, 0);  
+		  }
+		  
+		  {System.out.println("Please enter the length of the cube");
+		  cubelength= sc.nextDouble();
+		  Cube c = new Cube();
+		  cubearea = c.area(cubelength, 0, 0);
+		  cubevolume = c.volume(cubelength, 0, 0);  
+		  }
+		  
+		  {System.out.println("Please enter the radius of the sphere");
+		  sphereradius= sc.nextDouble();
+		  Sphere s = new Sphere();
+		  spherearea = s.area(sphereradius, 0, 0);
+		  spherevolume = s.volume(sphereradius, 0, 0);  
+		  }
+		System.out.println("The area and volume of triangle are: "+trianglearea + trianglevolume);
+		System.out.println("The area and volume of rectangle are: "+rectanglearea + rectanglevolume);
+		System.out.println("The area and volume of sphere are: "+spherearea + spherevolume);
+		System.out.println("The area and volume of cube are: "+cubearea + cubevolume);
+	  }
+	}
+
+}
