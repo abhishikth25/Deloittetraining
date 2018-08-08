@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Select Movie</title>
+<style>
+img
+{
+	height: 300px;
+	width: 270px;	
+}
+th
+{
+	background-color:black;
+	text-align: centre;
+}
+body
+{
+background-color: black;
+}
+</style>
+</head>
+<body>
+<table align="center">
+<tr>
+<th colspan="4"> <font color="yellow" size = "10" face="broadway">Movie Scoop</th></font>
+</tr>
+<tr>
+<th colspan="4"> <font color="yellow" size = "5" face="trebuchet">Running in Cinemas Near You</th></font>
+</tr>
+<tr>
+<td><img src = C:\Img\Karwaan.jpg></td>
+<td><img src = C:\Img\Mission.jpg></td>
+</tr>
+<tr>
+<td align="center"><a href="https://www.imdb.com/title/tt7919680/" target="_blank">Info</a>
+<a href="">Book Now</a></td>
+<td align="center"><a href="https://www.imdb.com/title/tt4912910/" target="_blank">Info</a>
+<a href="">Book Now</a></td>
+</tr>
+<tr>
+</tr>
+<tr>
+<td><img src = C:\Img\Katheyondu.jpg></td>
+<td><img src = C:\Img\Sanju.jpg></td>
+</tr>
+<tr>
+<td align="center"><a href="https://www.imdb.com/title/tt7997932/" target="_blank">Info</a>
+<a href="">Book Now</a></td>
+<td align="center"><a href="https://www.imdb.com/title/tt6452574/" target="_blank">Info</a>
+<a href="">Book Now</a></td>
+</tr>
+</table>
+</body>
+</html>
